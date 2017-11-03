@@ -16,10 +16,11 @@ namespace BattelSoccor.Sprites
         private float? _startSpeed;
         private bool _isPlaying;
 
-        public Score Score;
+        public Score score;
         public int SpeedIncrementSpan = 10;
 
-        public Ball(Texture2D texture) : base(texture)
+        public Ball(Texture2D texture) 
+            : base(texture)
         {
             Speed = 3f;
         }
@@ -71,17 +72,17 @@ namespace BattelSoccor.Sprites
 
             if (Position.X <= 0)
             {
-                Score.Score2++;
-                Restart();
+                score.Score2++;
+              //  Restart();
             }
 
             if (Position.X + _texture.Width >= Game1.screenWidth)
             {
-                Score.Score1++;
-                Restart();
+                score.Score1++;
+               // Restart();
             }
 
-
+            Position += Velocity * Speed;
         }
 
         public void Restart()

@@ -62,7 +62,7 @@ namespace BattelSoccor
             _sprites = new List<Sprite>()
             {
                 new Sprite(Content.Load<Texture2D>("Background")),
-                new Bat(batTexture)
+                new Charecctor(batTexture)
                 {
                     Position=new Vector2(20,(screenHeingt/2)+(batTexture.Height/2)),
                     Input = new Input()
@@ -72,7 +72,7 @@ namespace BattelSoccor
                         jump=Keys.W,
                     }
                 },
-                  new Bat(batTexture)
+                  new Charecctor(batTexture)
                 {
                     Position=new Vector2(screenWidth - 20 - batTexture.Width,(screenHeingt/2)+(batTexture.Height/2)),
                     Input = new Input()
@@ -85,7 +85,7 @@ namespace BattelSoccor
                   new Ball(ballTexture)
                   {
                        Position=new Vector2((screenWidth/2)-(batTexture.Width/2),(screenHeingt/2)-(batTexture.Height/2)),
-                       Score=_score,
+                       score=_score,
                   },
 
             };

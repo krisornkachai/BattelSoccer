@@ -9,11 +9,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BattelSoccor.Sprites
 {
-    class Bat : Sprite
+    class Charecctor : Sprite
     {
+
         bool up ,jumpup = false;
         
         public Bat(Texture2D texture)
+
+        public Charecctor(Texture2D texture)
+
             : base(texture)
         {
             Speed = 5f;
@@ -48,6 +52,7 @@ namespace BattelSoccor.Sprites
                     up = true;
                 }
             }
+
             if(up == true)
             {
                 float i = 1;
@@ -62,11 +67,21 @@ namespace BattelSoccor.Sprites
             if(up == false)
             {
                 Velocity.Y = 0f;
+
+
+            else if (Keyboard.GetState().IsKeyDown(Input.jump))
+            {
+                Velocity.Y = -Speed;
             }
+            
+
 
             Position += Velocity;
            // Position.Y = MathHelper.Clamp(Position.Y, 0, Game1.screenHeingt - _texture.Height);
             Velocity = Vector2.Zero;
+
+
+
         }
     }
 }

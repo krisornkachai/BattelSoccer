@@ -49,7 +49,7 @@ namespace BattelSoccor.Sprites
         protected bool IsTouchingLeft(Sprite sprite)
         {
             return this.Rectangle.Right + this.Velocity.X > sprite.Rectangle.Left &&
-                   this.Rectangle.Left < sprite.Rectangle.Right &&
+                   this.Rectangle.Left < sprite.Rectangle.Left &&
                    this.Rectangle.Bottom > sprite.Rectangle.Top &&
                    this.Rectangle.Top < sprite.Rectangle.Bottom;
 
