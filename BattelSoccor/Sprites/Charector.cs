@@ -9,9 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BattelSoccor.Sprites
 {
-    class Bat : Sprite
+    class Charecctor : Sprite
     {
-        public Bat(Texture2D texture)
+        public Charecctor(Texture2D texture)
             : base(texture)
         {
             Speed = 5f;
@@ -35,13 +35,16 @@ namespace BattelSoccor.Sprites
 
             else if (Keyboard.GetState().IsKeyDown(Input.jump))
             {
-                Velocity.Y = Speed;
+                Velocity.Y = -Speed;
             }
-
+            
 
             Position += Velocity;
            // Position.Y = MathHelper.Clamp(Position.Y, 0, Game1.screenHeingt - _texture.Height);
             Velocity = Vector2.Zero;
+
+
+
         }
     }
 }
