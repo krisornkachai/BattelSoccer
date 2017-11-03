@@ -11,11 +11,17 @@ namespace BattelSoccor.Sprites
 {
     class Bat : Sprite
     {
+        bool up ;
+        
         public Bat(Texture2D texture)
             : base(texture)
         {
             Speed = 5f;
+
         }
+
+        
+
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
         {
@@ -24,20 +30,32 @@ namespace BattelSoccor.Sprites
                 throw new Exception("Pleses give a value to input");
             }
 
-            if (Keyboard.GetState().IsKeyDown(Input.left))
+            if (Keyboard.GetState().IsKeyDown(Input.right)) Velocity.X = 3f;
+            else if (Keyboard.GetState().IsKeyDown(Input.left)) Velocity.X = -3f;
+            else Velocity.X = 0f;
+
+            if (Keyboard.GetState().IsKeyDown(Input.jump)&&up==false)
             {
-                Velocity.X = -Speed;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Input.right))
-            {
-                Velocity.X = Speed;
+
+                Position.Y -= 150f;
+                Velocity.Y = 5f;
+                up = true;
             }
 
-            else if (Keyboard.GetState().IsKeyDown(Input.jump))
+            if(up == true)
             {
-                Velocity.Y = Speed;
+                float i = 1;
+                Velocity.Y += 5f * i;
             }
 
+            if (Position.Y + _texture.Height >=386.5)
+            {
+                up = false;
+            }
+            if(up == false)
+            {
+                Velocity.Y = 0f;
+            }
 
             Position += Velocity;
            // Position.Y = MathHelper.Clamp(Position.Y, 0, Game1.screenHeingt - _texture.Height);
