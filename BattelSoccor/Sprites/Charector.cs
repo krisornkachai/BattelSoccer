@@ -11,7 +11,7 @@ namespace BattelSoccor.Sprites
 {
     class Bat : Sprite
     {
-        bool up ;
+        bool up ,jumpup = false;
         
         public Bat(Texture2D texture)
             : base(texture)
@@ -37,15 +37,22 @@ namespace BattelSoccor.Sprites
             if (Keyboard.GetState().IsKeyDown(Input.jump)&&up==false)
             {
 
-                Position.Y -= 150f;
-                Velocity.Y = 5f;
-                up = true;
+                jumpup = true;
             }
-
+            if(jumpup == true)
+            {
+                float i = 1;
+                Position.Y -= 7.5f * i;//up
+                if (Position.Y<140f)
+                {
+                    up = true;
+                }
+            }
             if(up == true)
             {
                 float i = 1;
-                Velocity.Y += 5f * i;
+                Velocity.Y += 7.5f * i;  //down
+                jumpup = false;
             }
 
             if (Position.Y + _texture.Height >=386.5)
