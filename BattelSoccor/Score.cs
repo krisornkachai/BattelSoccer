@@ -23,7 +23,7 @@ namespace BattelSoccor
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(_font, Score1.ToString(), new Vector2(320, 70), Color.White);
-            spriteBatch.DrawString(_font, Score1.ToString(), new Vector2(430, 70), Color.White);
+            spriteBatch.DrawString(_font, Score2.ToString(), new Vector2(430, 70), Color.White);
         }
     }
 }
