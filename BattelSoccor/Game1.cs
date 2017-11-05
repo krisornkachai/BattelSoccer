@@ -112,7 +112,7 @@ namespace BattelSoccor
                 sprite.Update(gameTime, _sprites);
             }
 
-
+            
             base.Update(gameTime);
         }
 
