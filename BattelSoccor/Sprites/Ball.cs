@@ -47,7 +47,7 @@ namespace BattelSoccor.Sprites
             _timer += (float)gametime.ElapsedGameTime.TotalSeconds;
             if (_timer > SpeedIncrementSpan)
             {
-
+                score.Score1=(int)_timer;
                 Speed++;
                 _timer = 0;
 
@@ -76,13 +76,13 @@ namespace BattelSoccor.Sprites
             if (Position.X <= 0)
             {
                 score.Score2++;
-               // Restart();
+                Restart();
             }
 
             if (Position.X + _texture.Width >= Game1.screenWidth)
             {
                 score.Score1++;
-                //Restart();
+               Restart();
             }
 
             Position += Velocity * Speed;
