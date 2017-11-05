@@ -71,19 +71,26 @@ namespace BattelSoccor.Sprites
                 Velocity.Y = -Velocity.Y;
 
             if (Position.X <= 0 || Position.X + _texture.Width >= Game1.screenWidth)
-                Velocity.X = -Velocity.X;
-
-            if (Position.X <= 0)
             {
-                score.Score2++;
-                Restart();
-            }
 
-            if (Position.X + _texture.Width >= Game1.screenWidth)
-            {
-                score.Score1++;
-               Restart();
+                  Velocity.X = -Velocity.X;
+
+                if (Position.X + _texture.Width > Game1.screenWidth)
+                {
+                    score.Score1++;
+                    Restart();
+                }
+                else
+                {
+                    score.Score2++;
+                    Restart();
+                }
             }
+                
+
+            
+
+            
 
             Position += Velocity * Speed;
         }
