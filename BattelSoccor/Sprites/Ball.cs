@@ -47,7 +47,7 @@ namespace BattelSoccor.Sprites
             _timer += (float)gametime.ElapsedGameTime.TotalSeconds;
             if (_timer > SpeedIncrementSpan)
             {
-                score.Score1=(int)_timer;
+               // score.Score1=(int)_timer;
                 Speed++;
                 _timer = 0;
 
