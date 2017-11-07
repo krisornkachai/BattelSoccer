@@ -93,10 +93,13 @@ namespace BattelSoccor.Sprites
                 //if (  this.IsTouchingBottom(sprite))
                     //this.vy= -this.vy;
             }
-
+            vy = (vy + (g * tg));
             if (Position.Y <= 0 || Position.Y + _texture.Height >= Game1.screenHeingt || Position.Y + _texture.Height >= 375)
             { //Velocity.Y = -Velocity.Y;
-                vy = -vy;
+                if (Position.Y <= 0) {
+                    vy += 1;
+                }
+                    vy = -vy;
                 // root2 = new Vector2((float)(0.707), (float)(0.707));
                 // Velocity.Y =(float)(Velocity.Y *0.707f);
                 vy = (vy * 0.707f);
@@ -106,8 +109,15 @@ namespace BattelSoccor.Sprites
 
             if (Position.X <= 0 || Position.X >= Game1.screenWidth)
             {
-
-                vx= -vx;
+                if(Position.X <= 0)
+                {
+                    Position.X = 0;
+                }
+                else if (Position.X >= Game1.screenWidth)
+                {
+                    Position.X = Game1.screenWidth-1-_texture.Width;
+                }
+                vx = -vx;
                 vx = (vx * 0.6f);
   
                 if (Position.X + _texture.Width > Game1.screenWidth)
@@ -130,7 +140,7 @@ namespace BattelSoccor.Sprites
               Position += Velocity;*/
 
              
-            vy = (vy + (g * tg));
+           
             Position += new Vector2(vx,vy);
         }
 
