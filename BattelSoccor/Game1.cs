@@ -37,6 +37,9 @@ namespace BattelSoccor
         /// </summary>
         protected override void Initialize()
         {
+            graphics.PreferredBackBufferWidth = 720;
+            graphics.PreferredBackBufferHeight = 480;
+            graphics.ApplyChanges();
             // TODO: Add your initialization logic here
             screenWidth = graphics.PreferredBackBufferWidth;
             screenHeingt = graphics.PreferredBackBufferHeight;
@@ -61,7 +64,7 @@ namespace BattelSoccor
 
             _sprites = new List<Sprite>()
             {
-                new Sprite(Content.Load<Texture2D>("Background")),
+                new Sprite(Content.Load<Texture2D>("bg")),
                 new Charecctor(batTexture)
                 {
                     Position=new Vector2(20,(screenHeingt/2)+(batTexture.Height/2)),

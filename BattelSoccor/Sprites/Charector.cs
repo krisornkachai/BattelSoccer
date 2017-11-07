@@ -11,6 +11,7 @@ namespace BattelSoccor.Sprites
 {
     class Charecctor : Sprite
     {
+       
 
         bool up, jumpup = false;
 
@@ -21,6 +22,7 @@ namespace BattelSoccor.Sprites
             : base(texture)
         {
             Speed = 5f;
+            name = "Charrector";
 
         }
 
@@ -73,7 +75,7 @@ namespace BattelSoccor.Sprites
             foreach (var sprite in sprites)
             {
                 if (sprite == this) continue;
-
+                if (sprite.name == "Ball") continue;
                 if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
                     this.Velocity.X = -this.Velocity.X;
                 if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
@@ -88,8 +90,14 @@ namespace BattelSoccor.Sprites
             if ((Position.X <= 0 || Position.X + _texture.Width >= Game1.screenWidth))
 
 
-            {
-                Velocity.X = -Velocity.X;
+            {   
+                if(Position.X <= 0){
+                    Position.X = 1;
+                }
+                else if (Position.X + _texture.Width >= Game1.screenWidth){
+                    Position.X = Game1.screenWidth -1 - _texture.Width;
+                }
+
             }
 
 
