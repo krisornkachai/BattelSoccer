@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buttons\Button.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Models\Input.cs" />
     <Compile Include="Program.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Score.cs" />
     <Compile Include="Sprites\Ball.cs" />
     <Compile Include="Sprites\Charector.cs" />
+    <Compile Include="Sprites\CharectorStream.cs" />
     <Compile Include="Sprites\Sprite.cs" />
   </ItemGroup>
   <ItemGroup>

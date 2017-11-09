@@ -5,6 +5,7 @@ using BattelSoccor.Models;
 using BattelSoccor.Sprites;
 using System;
 using System.Collections.Generic;
+using BattelSoccor.Buttons;
 
 namespace BattelSoccor
 {
@@ -12,7 +13,15 @@ namespace BattelSoccor
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
-    {
+    {  
+
+        enum GameState
+        {
+            Mainmenu,
+            GamePlay
+         }
+        GameState CurrentState = GameState.Mainmenu;
+      //  private Charactersteam charactersteam;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -22,7 +31,9 @@ namespace BattelSoccor
 
         private Score _score;
         private List<Sprite> _sprites;
-
+        private List<Texture2D> texture2DCha1;
+        
+        Button btnPlay;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -54,18 +65,27 @@ namespace BattelSoccor
         /// </summary>
         protected override void LoadContent()
         {
+            IsMouseVisible = true;
+            graphics.ApplyChanges();
+            IsMouseVisible = true;
+            btnPlay = new Button(Content.Load<Texture2D>("btn_start"), graphics.GraphicsDevice);
+            btnPlay.setPosition(new Vector2(360, 240));
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            texture2DCha1 = new List<Texture2D>() { Content.Load<Texture2D>("Charector") ,
+                Content.Load<Texture2D>("CharectorRed") ,
+                Content.Load<Texture2D>("CharectorBlue") };    
+            
             var batTexture = Content.Load<Texture2D>("Charector");
             var ballTexture = Content.Load<Texture2D>("Ball");
-
+             // charactersteam = new Charactersteam(batTexture, 4, 6);
             _score = new Score(Content.Load<SpriteFont>("Font"));
 
             _sprites = new List<Sprite>()
             {
                 new Sprite(Content.Load<Texture2D>("bg")),
-                new Charecctor(batTexture)
+                new Charecctor(batTexture,texture2DCha1)
                 {
                     Position=new Vector2(20,(screenHeingt/2)+(batTexture.Height/2)),
                     Input = new Input()
@@ -75,7 +95,7 @@ namespace BattelSoccor
                         jump=Keys.W,
                     }
                 },
-                  new Charecctor(batTexture)
+                  new Charecctor(batTexture,texture2DCha1)
                 {
                     Position=new Vector2(screenWidth - 20 - batTexture.Width,(screenHeingt/2)+(batTexture.Height/2)),
                     Input = new Input()
@@ -110,8 +130,23 @@ namespace BattelSoccor
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            MouseState mouse = Mouse.GetState();
+            switch (CurrentState) {
+              
+                case GameState.Mainmenu:
+                    if (btnPlay.isClicked == true) CurrentState = GameState.GamePlay;
+                    btnPlay.Update(mouse);
+                    break;
+                case GameState.GamePlay:
+                    break;
+
+            }
+
+
+
             foreach (var sprite in _sprites)
             {
+               
                 sprite.Update(gameTime, _sprites);
             }
 
@@ -124,16 +159,31 @@ namespace BattelSoccor
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            foreach (var sprite in _sprites)
+        { 
+           /* GraphicsDevice.Clear(Color.CornflowerBlue);
+           
+            // TODO: Add your drawing code here
+
+    */
+ spriteBatch.Begin();
+            
+
+            
+            switch (CurrentState)
+            {
+                case GameState.Mainmenu:
+                    spriteBatch.Draw(Content.Load<Texture2D>("bg_mainMenu"), new Rectangle(0, 0, screenWidth, screenHeingt), Color.White);
+                    btnPlay.Draw(spriteBatch);
+                    break;
+                case GameState.GamePlay:
+                    foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
 
             _score.Draw(spriteBatch);
+                    break;
 
-            spriteBatch.End();
-            // TODO: Add your drawing code here
+            }
+spriteBatch.End();
 
             base.Draw(gameTime);
         }

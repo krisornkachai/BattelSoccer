@@ -6,28 +6,37 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace BattelSoccor.Sprites
 {
     class Charecctor : Sprite
     {
        
-
+        //bool pressBottom = false;
+        // private Charactersteam charactersteam;
+        public int movecharacter = 3;
         bool up, jumpup = false;
+        private List<Texture2D> texture2DList;
 
-        
 
-        public Charecctor(Texture2D texture)
+        public Charecctor(Texture2D texture, List<Texture2D> ListCha)
 
             : base(texture)
         {
             Speed = 5f;
             name = "Charrector";
+            texture2DList = ListCha;
+            //  charactersteam = new Charactersteam(texture, 4, 6);
+            // var left = Content.Load<Texture2D>("Charector");
 
         }
 
+        public void NextMove(List<Texture2D> cha)
+        {
 
-
+            _texture = cha[1];
+        }
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
         {
@@ -36,8 +45,18 @@ namespace BattelSoccor.Sprites
                 throw new Exception("Pleses give a value to input");
             }
 
-            if (Keyboard.GetState().IsKeyDown(Input.right)) Velocity.X = 3f;
-            else if (Keyboard.GetState().IsKeyDown(Input.left)) Velocity.X = -3f;
+            if (Keyboard.GetState().IsKeyDown(Input.right))
+            {
+               Velocity.X = 3f;
+                _texture = texture2DList[2];
+               // movecharacter = 1;
+               // pressBottom = true;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Input.left)) {
+                Velocity.X = -3f;
+                //movecharacter = 0;
+                //pressBottom = true;
+            }
             else Velocity.X = 0f;
 
             if (Keyboard.GetState().IsKeyDown(Input.jump) && up == false)
