@@ -10,6 +10,7 @@ namespace BattelSoccor.Sprites
 {
     class Charactersteam
     {
+      
         public Texture2D Character1 { get; set; }
        // public Texture2D Character2 { get; set; }
         int Moves;

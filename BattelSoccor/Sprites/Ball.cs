@@ -34,7 +34,7 @@ namespace BattelSoccor.Sprites
             if (_startPosition == null)
             {
                 _startPosition = Position;
-                //_startSpeed = Speed;
+                _startSpeed = Speed;
 
                 Restart();
 
@@ -53,11 +53,9 @@ namespace BattelSoccor.Sprites
             
             if (_timer > SpeedIncrementSpan)
             {
-               // score.Score1+=(int)_timer;
-             //   score.Score2 += (int)gametime.ElapsedGameTime.TotalSeconds;
                 Speed++;
                 _timer = 0;
-               // tg = _timer;
+         
 
             }
 
@@ -109,29 +107,31 @@ namespace BattelSoccor.Sprites
 
             if (Position.X <= 0 || Position.X >= Game1.screenWidth)
             {
-                if(Position.X <= 0)
-                {
-                    Position.X = 0;
-                }
-                else if (Position.X >= Game1.screenWidth)
-                {
-                    Position.X = Game1.screenWidth-1-_texture.Width;
-                }
-                vx = -vx;
-                vx = (vx * 0.6f);
+           
   
-                if (Position.X + _texture.Width > Game1.screenWidth)
+                if (Position.X + _texture.Width >= Game1.screenWidth )
                 {
                    
-                    // score.Score1++;
+                     score.Score1++;
                     //Restart();
                 }
                 else
                 {
                     
-                    // score.Score2++;
+                     score.Score2++;
                     // Restart();
                 }
+
+                if (Position.X <= 0)
+                {
+                    Position.X = 0;
+                }
+                else if (Position.X >= Game1.screenWidth)
+                {
+                    Position.X = Game1.screenWidth - 1 - _texture.Width;
+                }
+                vx = -vx;
+                vx = (vx * 0.6f);
             }
             // Position += Velocity * Speed;
 
