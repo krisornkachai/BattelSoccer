@@ -11,7 +11,7 @@ namespace BattelSoccor.Sprites
     class Sprite
     {
         protected Texture2D _texture;
-
+        public string name ;
         public Vector2 Position;
         public Vector2 Velocity;
         public float Speed;
