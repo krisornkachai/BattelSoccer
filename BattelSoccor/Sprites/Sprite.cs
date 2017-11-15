@@ -10,13 +10,14 @@ namespace BattelSoccor.Sprites
 {
     class Sprite
     {
+        public bool hitball = false;
         protected Texture2D _texture;
-        public string name ;
+        public string name = "bg";
         public Vector2 Position;
         public Vector2 Velocity;
         public float Speed;
         public Input Input;
-
+        //public bool HB = false;
         public Rectangle Rectangle
         {
             get
@@ -47,6 +48,7 @@ namespace BattelSoccor.Sprites
         #region collision
         protected bool IsTouchingLeft(Sprite sprite)
         {
+
             return this.Rectangle.Right + this.Velocity.X > sprite.Rectangle.Left &&
                    this.Rectangle.Left < sprite.Rectangle.Left &&
                    this.Rectangle.Bottom > sprite.Rectangle.Top &&
@@ -56,6 +58,7 @@ namespace BattelSoccor.Sprites
 
         protected bool IsTouchingRight(Sprite sprite)
         {
+
             return this.Rectangle.Left + this.Velocity.X < sprite.Rectangle.Right &&
                    this.Rectangle.Right > sprite.Rectangle.Right &&
                    this.Rectangle.Bottom > sprite.Rectangle.Top &&
@@ -65,6 +68,7 @@ namespace BattelSoccor.Sprites
 
         protected bool IsTouchingTop(Sprite sprite)
         {
+
             return this.Rectangle.Bottom + this.Velocity.Y > sprite.Rectangle.Top &&
                    this.Rectangle.Top < sprite.Rectangle.Top &&
                    this.Rectangle.Right > sprite.Rectangle.Left &&
@@ -74,6 +78,7 @@ namespace BattelSoccor.Sprites
 
         protected bool IsTouchingBottom(Sprite sprite)
         {
+
             return this.Rectangle.Top + this.Velocity.Y < sprite.Rectangle.Bottom &&
                    this.Rectangle.Bottom > sprite.Rectangle.Bottom &&
                    this.Rectangle.Right > sprite.Rectangle.Left &&
