@@ -75,10 +75,22 @@ namespace BattelSoccor
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            texture2DCha1 = new List<Texture2D>() { Content.Load<Texture2D>("Charector") ,
-                Content.Load<Texture2D>("CharectorRed") ,
-                Content.Load<Texture2D>("CharectorBlue") };    
-            
+
+            texture2DCha1 = new List<Texture2D>() {
+                Content.Load<Texture2D>("charactor1/Charac_1/2_1") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_2") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_3"),
+                Content.Load<Texture2D>("charactor1/Charac_1/2_4") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_5") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_6")
+            };
+
+            texture2DHeal1 = new List<Texture2D>() // newwwww
+            {   Content.Load<Texture2D>("healthbar2"),
+                Content.Load<Texture2D>("healthbar1"),
+                Content.Load<Texture2D>("healthbar")
+            };
+
             var batTexture = Content.Load<Texture2D>("Charector");
             var ballTexture = Content.Load<Texture2D>("Ball");
             var healTexture = Content.Load<Texture2D>("healthbar2");  //newwwwwww

@@ -11,7 +11,7 @@ namespace BattelSoccor.Sprites
 {
     class Ball : Sprite
     {
-
+        private float keeppos;
         private float _timer = 0f;
         private Vector2? _startPosition = null;
         private float? _startSpeed;
@@ -141,71 +141,42 @@ namespace BattelSoccor.Sprites
                 vy = -vy;
                 // root2 = new Vector2((float)(0.707), (float)(0.707));
                 // Velocity.Y =(float)(Velocity.Y *0.707f);
-                vy = (vy * 0.707f);
+                vy = (vy * 0.7f);
                 tg = 0;
 
             }
 
-            if (Position.X <= 0 || Position.X >= Game1.screenWidth)
+            if (Position.X <= 0 || Position.X >= Game1.screenWidth && Position.Y < 400)
             {
 
-
+                keeppos = Position.Y;
                 if (Position.X + _texture.Width >= Game1.screenWidth)
                 {
-                   
-                     score.Score1++;
-                    //Restart();
+                    sprites[1].Position.X = 120;
+                    sprites[1].Position.Y = 290;
+                    sprites[2].Position.X = 584;
+                    sprites[2].Position.Y = 290;
+                    score.Score1++;
+                    Restart();
                 }
                 else
                 {
-
+                    sprites[1].Position.X = 120;
+                    sprites[1].Position.Y = 290;
+                    sprites[2].Position.X = 584;
+                    sprites[2].Position.Y = 290;
                     score.Score2++;
-                    // Restart();
+                    Restart();
                 }
 
-                if (Position.X <= 0)
-                {
-                    Position.X = 0;
-                }
-                else if (Position.X >= Game1.screenWidth)
-                {
-                    Position.X = Game1.screenWidth - 1 - _texture.Width;
-                }
-                vx = -vx;
-                vx = (vx * 0.6f);
             }
-            // Position += Velocity * Speed;
-
-            /*  Velocity.X=(Velocity.X+(a*ta));
-              Velocity.Y = (Velocity.Y + (g * tg));
-              Position += Velocity;*/
-
-
-
             Position += new Vector2(vx, vy);
         }
 
         public void Restart()
         {
-            
-            /* var direction = Game1.random.Next(0, 4);
-             switch (direction)
-             {
-
-                 case 0:
-                     Velocity = new Vector2(1, 1);
-                     break;
-                 case 1:
-                     Velocity = new Vector2(1, -1);
-                     break;
-                 case 2:
-                     Velocity = new Vector2(-1, -1);
-                     break;
-                 case 3:
-                     Velocity = new Vector2(-1, 1);
-                     break;
-             }*/
-           // Velocity = new Vector2(0, 1f);
+            vx = 0;
+            vy -= 3;
             Position = (Vector2)_startPosition;
             // Speed = (float)_startSpeed;
             _timer = 0;
@@ -214,6 +185,6 @@ namespace BattelSoccor.Sprites
         }
 
 
-        
+
     }
 }

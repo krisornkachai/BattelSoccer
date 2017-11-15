@@ -12,7 +12,7 @@ namespace BattelSoccor.Sprites
 {
     class Charecctor : Sprite
     {
-       
+
         //bool pressBottom = false;
         // private Charactersteam charactersteam;
         public int movecharacter = 3;
@@ -36,11 +36,11 @@ namespace BattelSoccor.Sprites
         {
 
             _texture = cha[1];
-            
         }
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
         {
+
             if (Input == null)
             {
                 throw new Exception("Pleses give a value to input");
