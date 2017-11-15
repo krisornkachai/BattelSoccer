@@ -11,18 +11,18 @@ namespace BattelSoccor.Sprites
 {
     class Ball : Sprite
     {
-      
+
         private float _timer = 0f;
         private Vector2? _startPosition = null;
         private float? _startSpeed;
         private bool _isPlaying;
-        private float tg=0, g = 9.8f;
+        private float tg = 0, g = 9.8f;
         private float vx = 0, vy = 0;
         public Score score;
         public int SpeedIncrementSpan = 10;
-        private Vector2 root2 ;
+        private Vector2 root2;
 
-        public Ball(Texture2D texture) 
+        public Ball(Texture2D texture)
             : base(texture)
         {
             Speed = 3f;
@@ -50,75 +50,115 @@ namespace BattelSoccor.Sprites
 
             _timer += (float)gametime.ElapsedGameTime.TotalSeconds;
             tg = (float)gametime.ElapsedGameTime.TotalSeconds;
-            
+
             if (_timer > SpeedIncrementSpan)
             {
                 Speed++;
                 _timer = 0;
-         
+
 
             }
 
             foreach (var sprite in sprites)
             {
                 if (sprite == this) continue;
-                
+                if (sprite.name == "healthbar") continue;
+                if (sprite.name == "bg") continue;
 
-
-                if (this.IsTouchingLeft(sprite))
-                     {
-                    vx = 10;
-                    vy += 4;
-                    this.vx= -this.vx;
-                   
-                }
-                if ( this.IsTouchingRight(sprite))
+                if (sprite.name == "Charac_1")
                 {
-                    vx= -10;
-                    vy += 4;
-                    this.vx = -this.vx;
-                  
+                    if (this.IsTouchingLeft(sprite))
+                    {
+                        sprites[4].hitball = true; // Healbar
+                        vx = 10;
+                        vy += 4;
+                        this.vx = -this.vx;
 
-                }
-                if (  this.IsTouchingTop(sprite))
-                {
-                    /*  Velocity.Y += 10f;
-                      this.Velocity.Y = -this.Velocity.Y;*/
+                    }
+                    if (this.IsTouchingRight(sprite))
+                    {
+                        sprites[4].hitball = true; // Healbar
+                        vx = -10;
+                        vy += 4;
+                        this.vx = -this.vx;
 
-                    vy += 10f;
-                    this.vy = -this.vy;
-                }
-                //if (  this.IsTouchingBottom(sprite))
+
+                    }
+                    if (this.IsTouchingTop(sprite))
+                    {
+                        sprites[4].hitball = true; // Healbar
+                                                   /*  Velocity.Y += 10f;
+                                                     this.Velocity.Y = -this.Velocity.Y;*/
+
+                        vy += 10f;
+                        this.vy = -this.vy;
+                    }
+                    //if (  this.IsTouchingBottom(sprite))
                     //this.vy= -this.vy;
+                }
+                if (sprite.name == "Charac_2")
+                {
+                    if (this.IsTouchingLeft(sprite))
+                    {
+                        sprites[5].hitball = true; // Healbar
+                        vx = 10;
+                        vy += 4;
+                        this.vx = -this.vx;
+
+                    }
+                    if (this.IsTouchingRight(sprite))
+                    {
+                        sprites[5].hitball = true; // Healbar
+                        vx = -10;
+                        vy += 4;
+                        this.vx = -this.vx;
+
+
+                    }
+                    if (this.IsTouchingTop(sprite))
+                    {
+                        sprites[5].hitball = true; // Healbar
+                                                   /*  Velocity.Y += 10f;
+                                                     this.Velocity.Y = -this.Velocity.Y;*/
+
+                        vy += 10f;
+                        this.vy = -this.vy;
+                    }
+                    //if (  this.IsTouchingBottom(sprite))
+                    //this.vy= -this.vy;
+                }
+
+
             }
             vy = (vy + (g * tg));
             if (Position.Y <= 0 || Position.Y + _texture.Height >= Game1.screenHeingt || Position.Y + _texture.Height >= 375)
             { //Velocity.Y = -Velocity.Y;
-                if (Position.Y <= 0) {
+                if (Position.Y <= 0)
+                {
                     vy += 1;
                 }
-                    vy = -vy;
+                vy = -vy;
                 // root2 = new Vector2((float)(0.707), (float)(0.707));
                 // Velocity.Y =(float)(Velocity.Y *0.707f);
                 vy = (vy * 0.707f);
                 tg = 0;
-               
+
             }
 
             if (Position.X <= 0 || Position.X >= Game1.screenWidth)
             {
-           
-  
-                if (Position.X + _texture.Width >= Game1.screenWidth )
+
+
+                if (Position.X + _texture.Width >= Game1.screenWidth)
                 {
-                   
-                     score.Score1++;
+
+                    score.Score1++;
                     //Restart();
                 }
                 else
                 {
-                    
-                     score.Score2++;
+
+                    score.Score2++;
                     // Restart();
                 }
 
@@ -139,9 +179,9 @@ namespace BattelSoccor.Sprites
               Velocity.Y = (Velocity.Y + (g * tg));
               Position += Velocity;*/
 
-             
-           
-            Position += new Vector2(vx,vy);
+
+
+            Position += new Vector2(vx, vy);
         }
 
         public void Restart()
@@ -163,11 +203,11 @@ namespace BattelSoccor.Sprites
                      Velocity = new Vector2(-1, 1);
                      break;
              }*/
-           // Velocity = new Vector2(0, 1f);
+            // Velocity = new Vector2(0, 1f);
             Position = (Vector2)_startPosition;
-           // Speed = (float)_startSpeed;
+            // Speed = (float)_startSpeed;
             _timer = 0;
-           // _isPlaying = false;
+            // _isPlaying = false;
 
         }
 

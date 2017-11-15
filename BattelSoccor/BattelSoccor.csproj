@@ -50,6 +50,7 @@
     <Compile Include="Sprites\Ball.cs" />
     <Compile Include="Sprites\Charector.cs" />
     <Compile Include="Sprites\CharectorStream.cs" />
+    <Compile Include="Sprites\Healthbar.cs" />
     <Compile Include="Sprites\Sprite.cs" />
   </ItemGroup>
   <ItemGroup>
