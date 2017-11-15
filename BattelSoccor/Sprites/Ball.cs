@@ -21,12 +21,13 @@ namespace BattelSoccor.Sprites
         public Score score;
         public int SpeedIncrementSpan = 10;
         private Vector2 root2 ;
-
+        Sprite charec1, charec2;
         public Ball(Texture2D texture) 
             : base(texture)
         {
             Speed = 3f;
             name = "Ball";
+          
         }
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
@@ -111,8 +112,8 @@ namespace BattelSoccor.Sprites
   
                 if (Position.X + _texture.Width >= Game1.screenWidth )
                 {
-                   
-                     score.Score1++;
+                    
+                    score.Score1++;
                     //Restart();
                 }
                 else
@@ -146,6 +147,7 @@ namespace BattelSoccor.Sprites
 
         public void Restart()
         {
+            
             /* var direction = Game1.random.Next(0, 4);
              switch (direction)
              {
@@ -163,7 +165,8 @@ namespace BattelSoccor.Sprites
                      Velocity = new Vector2(-1, 1);
                      break;
              }*/
-           // Velocity = new Vector2(0, 1f);
+            // Velocity = new Vector2(0, 1f);
+
             Position = (Vector2)_startPosition;
            // Speed = (float)_startSpeed;
             _timer = 0;
@@ -171,5 +174,7 @@ namespace BattelSoccor.Sprites
 
         }
 
+
+        
     }
 }

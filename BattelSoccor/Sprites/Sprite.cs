@@ -30,7 +30,6 @@ namespace BattelSoccor.Sprites
         {
 
             _texture = texture;
-
         }
 
 

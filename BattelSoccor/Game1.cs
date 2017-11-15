@@ -74,8 +74,11 @@ namespace BattelSoccor
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             texture2DCha1 = new List<Texture2D>() { Content.Load<Texture2D>("Charector") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_1") ,
+               Content.Load<Texture2D>("charactor1/Charac_1/2_1") ,
                 Content.Load<Texture2D>("CharectorRed") ,
-                Content.Load<Texture2D>("CharectorBlue") };    
+                Content.Load<Texture2D>("CharectorBlue") }; 
+             
             
             var batTexture = Content.Load<Texture2D>("Charector");
             var ballTexture = Content.Load<Texture2D>("Ball");
