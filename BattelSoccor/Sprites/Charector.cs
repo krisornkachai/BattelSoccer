@@ -12,12 +12,14 @@ namespace BattelSoccor.Sprites
 {
     class Charecctor : Sprite
     {
+        int coutframe=0;
        
         //bool pressBottom = false;
         // private Charactersteam charactersteam;
         public int movecharacter = 3;
         bool up, jumpup = false;
-        private List<Texture2D> texture2DList;
+        private List<Texture2D> texture2DListMoveright;
+        int moverightc1=0;
 
         //public bool Hb = false;
         public Charecctor(Texture2D texture, List<Texture2D> ListCha, string Charac)
@@ -26,21 +28,32 @@ namespace BattelSoccor.Sprites
         {
             Speed = 5f;
             name = Charac;
-            texture2DList = ListCha;
+            texture2DListMoveright = ListCha;
             //  charactersteam = new Charactersteam(texture, 4, 6);
             // var left = Content.Load<Texture2D>("Charector");
 
         }
 
-        public void NextMove(List<Texture2D> cha)
+        public void NextMoveright(List<Texture2D> cha)
         {
+            coutframe++;
+            if (coutframe > 3) {
+                coutframe = 0;
+            if (moverightc1 < 5)
+            {
 
-            _texture = cha[1];
-            
+                moverightc1++;
+            }
+            else { moverightc1 = 0; }
+
+              _texture = cha[moverightc1];
+            }
         }
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
         {
+            textureData = new Color[_texture.Width *_texture.Height];
+            _texture.GetData(textureData);
             if (Input == null)
             {
                 throw new Exception("Pleses give a value to input");
@@ -49,13 +62,14 @@ namespace BattelSoccor.Sprites
             if (Keyboard.GetState().IsKeyDown(Input.right))
             {
                 Velocity.X = 3f;
-                _texture = texture2DList[2];
+                NextMoveright(texture2DListMoveright);
                 // movecharacter = 1;
                 // pressBottom = true;
             }
             else if (Keyboard.GetState().IsKeyDown(Input.left))
             {
                 Velocity.X = -3f;
+                NextMoveright(texture2DListMoveright);
                 //movecharacter = 0;
                 //pressBottom = true;
             }
@@ -63,13 +77,14 @@ namespace BattelSoccor.Sprites
 
             if (Keyboard.GetState().IsKeyDown(Input.jump) && up == false)
             {
+                NextMoveright(texture2DListMoveright);
                 jumpup = true;
             }
             if (jumpup == true)
             {
                 float i = 1;
                 Position.Y -= 7.5f * i;//up
-                if (Position.Y < 140f)
+                if (Position.Y < 200f)
                 {
                     up = true;
                 }
@@ -82,7 +97,7 @@ namespace BattelSoccor.Sprites
                 jumpup = false;
             }
 
-            if (Position.Y + _texture.Height >= 386.5)
+            if (Position.Y + _texture.Height >= 400)
             {
                 up = false;
             }
@@ -150,5 +165,7 @@ namespace BattelSoccor.Sprites
 
 
         }
+
+
     }
 }

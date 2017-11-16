@@ -22,7 +22,7 @@ namespace BattelSoccor.Buttons
         public Button(Texture2D newTexture, GraphicsDevice graphics)
         {
             texture = newTexture;
-            size = new Vector2(graphics.Viewport.Width / 8, graphics.Viewport.Height / 30);
+            size = new Vector2(182,62);
         }
 
         bool down;

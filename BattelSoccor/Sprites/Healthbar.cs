@@ -12,7 +12,7 @@ namespace BattelSoccor.Sprites
 {
     class Healthbar : Sprite
     {
-        private int healbartab = 1;
+        private int healbartab = 0;
         private List<Texture2D> texture2DListHeal;
         public Healthbar(Texture2D texture, List<Texture2D> ListHeal, String Heal)
 
@@ -26,12 +26,12 @@ namespace BattelSoccor.Sprites
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
         {
-            if (hitball && healbartab < 3)
+            if (hitball && healbartab < 12)
             {
 
                 _texture = texture2DListHeal[healbartab];
                 healbartab += 1;
-                if (healbartab > 2)
+                if (healbartab > 11)
                 {
                     hitball = false;
                 }

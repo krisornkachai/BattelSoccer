@@ -20,14 +20,14 @@ namespace BattelSoccor.Sprites
         private float vx = 0, vy = 0;
         public Score score;
         public int SpeedIncrementSpan = 10;
-        private Vector2 root2 ;
+        private Vector2 root2;
 
-        public Ball(Texture2D texture) 
+        public Ball(Texture2D texture)
             : base(texture)
         {
             Speed = 3f;
             name = "Ball";
-          
+
         }
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
@@ -71,16 +71,16 @@ namespace BattelSoccor.Sprites
                     if (this.IsTouchingLeft(sprite))
                     {
                         sprites[4].hitball = true; // Healbar
-                        vx = 10;
-                        vy += 4;
+                        vx = 7;
+                        vy += 3;
                         this.vx = -this.vx;
 
                     }
                     if (this.IsTouchingRight(sprite))
                     {
                         sprites[4].hitball = true; // Healbar
-                        vx = -10;
-                        vy += 4;
+                        vx = -7;
+                        vy += 3;
                         this.vx = -this.vx;
 
 
@@ -90,28 +90,34 @@ namespace BattelSoccor.Sprites
                         sprites[4].hitball = true; // Healbar
                                                    /*  Velocity.Y += 10f;
                                                      this.Velocity.Y = -this.Velocity.Y;*/
-
-                        vy += 10f;
+                        vy += 3;
+                        if (vy > 6)
+                        {
+                            vy += -3;
+                        }
                         this.vy = -this.vy;
                     }
-                    //if (  this.IsTouchingBottom(sprite))
-                    //this.vy= -this.vy;
+                 /*   if (this.IsTouchingBottom(sprite))
+                    {
+                        this.vy = -this.vy;
+                        vx = 5;
+                    }*/
                 }
                 if (sprite.name == "Charac_2")
                 {
                     if (this.IsTouchingLeft(sprite))
                     {
                         sprites[5].hitball = true; // Healbar
-                        vx = 10;
-                        vy += 4;
+                        vx = 7;
+                        vy += 3;
                         this.vx = -this.vx;
 
                     }
                     if (this.IsTouchingRight(sprite))
                     {
                         sprites[5].hitball = true; // Healbar
-                        vx = -10;
-                        vy += 4;
+                        vx = -7;
+                        vy += 3;
                         this.vx = -this.vx;
 
 
@@ -122,49 +128,62 @@ namespace BattelSoccor.Sprites
                                                    /*  Velocity.Y += 10f;
                                                      this.Velocity.Y = -this.Velocity.Y;*/
 
-                        vy += 10f;
+                        vy += 3;
+                        if (vy > 6)
+                        {
+                            vy += -3;
+                        }
                         this.vy = -this.vy;
                     }
-                    //if (  this.IsTouchingBottom(sprite))
-                    //this.vy= -this.vy;
+                  /*  if (this.IsTouchingBottom(sprite))
+                    { this.vy = -this.vy;
+                        vx = -5;
+                    }*/
                 }
 
 
             }
             vy = (vy + (g * tg));
-            if (Position.Y <= 0 || Position.Y + _texture.Height >= Game1.screenHeingt || Position.Y + _texture.Height >= 375)
+            if (Position.Y <= 0 || Position.Y + _texture.Height >= Game1.screenHeingt || Position.Y + _texture.Height >= 400)
             { //Velocity.Y = -Velocity.Y;
                 if (Position.Y <= 0)
                 {
                     vy += 1;
                 }
-                vy = -vy;
-                // root2 = new Vector2((float)(0.707), (float)(0.707));
-                // Velocity.Y =(float)(Velocity.Y *0.707f);
+                if (Position.Y >= 1000)
+                {
+                    vy -= 1;
+                }
+                if (Position.Y >= 800)
+                {
+                    vy += 20;
+                }else 
+                    vy = -vy;
+               
                 vy = (vy * 0.7f);
                 tg = 0;
 
             }
 
-            if (Position.X <= 0 || Position.X >= Game1.screenWidth && Position.Y < 400)
+            if ((Position.X <= 0 || Position.X >= Game1.screenWidth && Position.Y < 400)&&(Position.Y <326||Position.Y >288))
             {
-
+                vx = -vx;
                 keeppos = Position.Y;
-                if (Position.X + _texture.Width >= Game1.screenWidth)
+                if (Position.X <= 20 && (Position.Y <420 && Position.Y > 288))
                 {
                     sprites[1].Position.X = 120;
-                    sprites[1].Position.Y = 290;
+                    sprites[1].Position.Y = 326;
                     sprites[2].Position.X = 584;
-                    sprites[2].Position.Y = 290;
+                    sprites[2].Position.Y = 326;
                     score.Score1++;
                     Restart();
                 }
-                else
+                else if(Position.X >= 600 &&(Position.Y <420&&Position.Y >288))
                 {
                     sprites[1].Position.X = 120;
-                    sprites[1].Position.Y = 290;
+                    sprites[1].Position.Y = 326;
                     sprites[2].Position.X = 584;
-                    sprites[2].Position.Y = 290;
+                    sprites[2].Position.Y = 326;
                     score.Score2++;
                     Restart();
                 }
