@@ -13,18 +13,19 @@ namespace BattelSoccor.Sprites
     class Charecctor : Sprite
     {
         int coutframe=0;
-       
+      
         //bool pressBottom = false;
         // private Charactersteam charactersteam;
         public int movecharacter = 3;
         bool up, jumpup = false;
+       
         private List<Texture2D> texture2DListMoveright;
         int moverightc1=0;
 
         //public bool Hb = false;
         public Charecctor(Texture2D texture, List<Texture2D> ListCha, string Charac)
 
-            : base(texture)
+            : base(texture,Charac)
         {
             Speed = 5f;
             name = Charac;
@@ -52,6 +53,7 @@ namespace BattelSoccor.Sprites
 
         public override void Update(GameTime gametime, List<Sprite> sprites)
         {
+            dash = false;
             textureData = new Color[_texture.Width *_texture.Height];
             _texture.GetData(textureData);
             if (Input == null)
@@ -61,6 +63,7 @@ namespace BattelSoccor.Sprites
 
             if (Keyboard.GetState().IsKeyDown(Input.right))
             {
+                oldKeyIsLeft = false;
                 Velocity.X = 3f;
                 NextMoveright(texture2DListMoveright);
                 // movecharacter = 1;
@@ -68,7 +71,24 @@ namespace BattelSoccor.Sprites
             }
             else if (Keyboard.GetState().IsKeyDown(Input.left))
             {
+                oldKeyIsLeft = true;
                 Velocity.X = -3f;
+                NextMoveright(texture2DListMoveright);
+                //movecharacter = 0;
+                //pressBottom = true;
+            }else if (Keyboard.GetState().IsKeyDown(Input.dash))
+            {
+                dash = true;
+                if (oldKeyIsLeft)
+                {
+                 Velocity.X = -8f;
+                }
+                else
+                {
+                    Velocity.X = 8f;
+
+                }
+                
                 NextMoveright(texture2DListMoveright);
                 //movecharacter = 0;
                 //pressBottom = true;
@@ -124,13 +144,13 @@ namespace BattelSoccor.Sprites
                     this.Velocity.X = -this.Velocity.X;
 
                 }
-                if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
+                if (this.Velocity.Y < 0 && this.IsTouchingTop(sprite))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
 
                 }
 
-                if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
+                if (this.Velocity.Y > 0 && this.IsTouchingBottom(sprite))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
 

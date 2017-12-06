@@ -16,7 +16,7 @@ namespace BattelSoccor.Sprites
         private List<Texture2D> texture2DListHeal;
         public Healthbar(Texture2D texture, List<Texture2D> ListHeal, String Heal)
 
-            : base(texture)
+            : base(texture,Heal)
         {
             name = Heal;
             texture2DListHeal = ListHeal;

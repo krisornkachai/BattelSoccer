@@ -11,7 +11,7 @@ namespace BattelSoccor.Models
         public Keys left;
         public Keys right;
         public Keys jump;
-        public Keys kick;
+        public Keys dash;
         public Keys power;
     }
 }

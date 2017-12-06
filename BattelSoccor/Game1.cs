@@ -178,7 +178,7 @@ namespace BattelSoccor
 
             _sprites = new List<Sprite>()
             {
-                new Sprite(Content.Load<Texture2D>("bg")),
+                new Sprite(Content.Load<Texture2D>("bg"),"bg"),
                 new Charecctor(batTexture,texture2DCha1MoveRight,"Charac_1")
                 {
                     Position=new Vector2(120,326),
@@ -187,6 +187,7 @@ namespace BattelSoccor
                         left=Keys.A,
                         right=Keys.D,
                         jump=Keys.W,
+                        dash=Keys.S,
                     }
                 },
                   new Charecctor( Content.Load<Texture2D>("charactor2/Charac_2/2_1"),texture2DCha2MoveRight,"Charac_2")
@@ -197,6 +198,7 @@ namespace BattelSoccor
                         left=Keys.Left,
                         right=Keys.Right,
                         jump=Keys.Up,
+                        dash=Keys.Down,
                     }
                 },
                   new Ball(ballTexture)
@@ -216,11 +218,11 @@ namespace BattelSoccor
                   {
                       Position=new Vector2(0,0),
                   },*/
-                    new Sprite(Content.Load<Texture2D>("goal1"))
+                    new Sprite(Content.Load<Texture2D>("goal1"),"goal1")
                   {
                       Position=new Vector2(-60,300),
                   },
-                     new Sprite(Content.Load<Texture2D>("goal2"))
+                     new Sprite(Content.Load<Texture2D>("goal2"),"goal2")
                   {
                       Position=new Vector2(650,300),
                   },

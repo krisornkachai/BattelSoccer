@@ -23,7 +23,7 @@ namespace BattelSoccor.Sprites
         private Vector2 root2;
 
         public Ball(Texture2D texture)
-            : base(texture)
+            : base(texture,"Ball")
         {
             Speed = 3f;
             name = "Ball";
@@ -64,62 +64,97 @@ namespace BattelSoccor.Sprites
             {
                 if (sprite == this) continue;
                 if (sprite.name == "healthbar") continue;
-                if (sprite.name == "bg") continue;
+              //  if (sprite.name == "bg") continue;
 
                 if (sprite.name == "Charac_1")
                 {
                     if (this.IsTouchingLeft(sprite))
                     {
-                        sprites[4].hitball = true; // Healbar
+                        if (sprites[1].dash)
+                        {
+                            sprites[4].hitball = true; // Healbar
+                            vx = 17;
+                            vy += 7;
+
+                        }
+                        else { 
+                            //if(sprites[4].oldKeyIsLeft)
+                            sprites[4].hitball = true; // Healbar
                         vx = 7;
                         vy += 3;
-                        this.vx = -this.vx;
+                        this.vx = -this.vx;}
 
                     }
                     if (this.IsTouchingRight(sprite))
                     {
-                        sprites[4].hitball = true; // Healbar
-                        vx = -7;
-                        vy += 3;
+                        if (sprites[1].dash) { 
+                            sprites[4].hitball = true; // Healbar
+                        vx = -17;
+                        vy += 7;
                         this.vx = -this.vx;
+                        }
+                        else
+                        {  sprites[4].hitball = true; // Healbar
+                            vx = -7;
+                            vy += 3;
+                            this.vx = -this.vx;
+                        }
 
 
                     }
                     if (this.IsTouchingTop(sprite))
                     {
                         sprites[4].hitball = true; // Healbar
-                                                   /*  Velocity.Y += 10f;
-                                                     this.Velocity.Y = -this.Velocity.Y;*/
-                        vy += 3;
+                        this.vy = sprites[4].Velocity.Y + 10; /*  Velocity.Y += 10f;
+                                                        this.Velocity.Y = -this.Velocity.Y;*/
+                        vy += 2;
+                   
                         if (vy > 6)
                         {
                             vy += -3;
                         }
                         this.vy = -this.vy;
                     }
-                 /*   if (this.IsTouchingBottom(sprite))
+                  if (this.IsTouchingBottom(sprite))
                     {
-                        this.vy = -this.vy;
-                        vx = 5;
-                    }*/
+                        sprites[4].hitball = true; // Healbar
+                        vx = -7;
+                        vy += 3;
+                        this.vx = -this.vx;
+                    }
                 }
                 if (sprite.name == "Charac_2")
                 {
                     if (this.IsTouchingLeft(sprite))
-                    {
+                    {    if(sprites[2].dash)
+                        {
+                            sprites[5].hitball = true; // Healbar
+                            vx = 17;
+                            vy += 7;
+
+                        }
+                        else { 
                         sprites[5].hitball = true; // Healbar
                         vx = 7;
                         vy += 3;
-                        this.vx = -this.vx;
+                        this.vx = -this.vx;}
 
                     }
                     if (this.IsTouchingRight(sprite))
                     {
-                        sprites[5].hitball = true; // Healbar
+                        if (sprites[2].dash)
+                        {
+                            sprites[5].hitball = true; // Healbar
+                            vx = -17;
+                            vy += 7;
+                            this.vx = -this.vx;
+                        }
+                        else {
+                            sprites[5].hitball = true; // Healbar
                         vx = -7;
                         vy += 3;
                         this.vx = -this.vx;
-
+                          }
 
                     }
                     if (this.IsTouchingTop(sprite))
@@ -127,6 +162,11 @@ namespace BattelSoccor.Sprites
                         sprites[5].hitball = true; // Healbar
                                                    /*  Velocity.Y += 10f;
                                                      this.Velocity.Y = -this.Velocity.Y;*/
+                        this.vy = sprites[5].Velocity.Y + 10;                           /*  Velocity.Y += 10f;
+                                                     this.Velocity.Y = -this.Velocity.Y;*/
+
+                        vy += 2;
+
 
                         vy += 3;
                         if (vy > 6)
@@ -148,11 +188,11 @@ namespace BattelSoccor.Sprites
             { //Velocity.Y = -Velocity.Y;
                 if (Position.Y <= 0)
                 {
-                    vy += 1;
+                    vy -= 1;
                 }
                 if (Position.Y >= 1000)
                 {
-                    vy -= 1;
+                    vy += 1;
                 }
                 if (Position.Y >= 800)
                 {

@@ -10,6 +10,8 @@ namespace BattelSoccor.Sprites
 {
     class Sprite
     {
+        public bool dash = false;
+        public bool oldKeyIsLeft = false;
         public bool hitball = false;
         protected Texture2D _texture;
         public string name = "bg";
@@ -28,9 +30,9 @@ namespace BattelSoccor.Sprites
 
         }
 
-        public Sprite(Texture2D texture)
+        public Sprite(Texture2D texture,string Name)
         {
-
+            name = Name;
             _texture = texture;
 
         }
