@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,11 @@ namespace BattelSoccor.Buttons
 {
     class Button
     {
+        Song ohAfarica;
         Texture2D texture;
         Vector2 position;
         Rectangle rectangle;
-
+        
         Color colour = new Color(255, 255, 255, 255);
 
         public Vector2 size;

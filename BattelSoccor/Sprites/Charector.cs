@@ -89,7 +89,7 @@ namespace BattelSoccor.Sprites
                 //movecharacter = 0;
                 //pressBottom = true;
             }else if (Keyboard.GetState().IsKeyDown(Input.dash) && !oldkeyisdash)
-            {   if (sprites[4].healbartab > 0) {
+            {   if (sprites[4].healbartab > -1) {
                 if (this.name == "Charac_1")
                     sprites[4].healbartab--;
                     oldkeyisdash = true;
@@ -97,7 +97,7 @@ namespace BattelSoccor.Sprites
                     dashnum = 10;
                 }
 
-                if (sprites[5].healbartab > 0)
+                if (sprites[5].healbartab > -1)
                 {
                     if (this.name == "Charac_2")
                         sprites[5].healbartab--;

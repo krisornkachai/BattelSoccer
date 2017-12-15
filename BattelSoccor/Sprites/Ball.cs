@@ -42,6 +42,10 @@ namespace BattelSoccor.Sprites
         public override void Update(GameTime gametime, List<Sprite> sprites)
         {
 
+
+
+
+
         //    MediaPlayer.Play(ohafarica);
             if (_startPosition == null)
             {

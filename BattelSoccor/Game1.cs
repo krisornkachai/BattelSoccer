@@ -524,6 +524,8 @@ namespace BattelSoccor
                        Position=new Vector2(0,0),
                   },
             };
+
+          
         }
 
         /// <summary>
@@ -549,6 +551,7 @@ namespace BattelSoccor
             {
 
                 case GameState.Mainmenu:
+
                     if (btnPlay.isClicked == true) CurrentState = GameState.GamePlay;
                     btnPlay.Update(mouse);
                     break;
@@ -556,6 +559,7 @@ namespace BattelSoccor
                     if (_score.Score1 == 5) { CurrentState = GameState.win; }
                     if (_score.Score2 == 5) { CurrentState = GameState.win; }
                     break;
+           //     case GameState.win:
 
 
             }
@@ -592,9 +596,10 @@ namespace BattelSoccor
                 case GameState.Mainmenu:
                     spriteBatch.Draw(Content.Load<Texture2D>("bg_mainMenu"), new Rectangle(0, 0, screenWidth, screenHeingt), Color.White);
                     btnPlay.Draw(spriteBatch);
-                    MediaPlayer.Play(ohAfarica);
+                 
                     break;
                 case GameState.GamePlay:
+
                     _sprites[0].Draw(spriteBatch);
                     _sprites[9].Draw(spriteBatch);
                     _sprites[3].Draw(spriteBatch);
@@ -614,12 +619,13 @@ namespace BattelSoccor
                          sprite.Draw(spriteBatch);
                       }*/
                     _score.Draw(spriteBatch);
+
                     break;
                 case GameState.win:
                     spriteBatch.Draw(Content.Load<Texture2D>("win"), new Rectangle(0, 0, screenWidth, screenHeingt), Color.White);
-
+                    if (_score.Score2 == 5) { spriteBatch.Draw(Content.Load<Texture2D>("charactor2/Charac_2/2_1"), new Rectangle(300, 250, 150, 150), Color.White); }
+                    if (_score.Score1 == 5) { spriteBatch.Draw(Content.Load<Texture2D>("charactor1/Charac_1/2_1"), new Rectangle(300, 250, 150, 150), Color.White); }
                     btnPlay.Draw(spriteBatch);
-                  
                     break;
 
             }
