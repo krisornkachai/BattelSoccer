@@ -52,6 +52,7 @@
     <Compile Include="Sprites\CharectorStream.cs" />
     <Compile Include="Sprites\Healthbar.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="win.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

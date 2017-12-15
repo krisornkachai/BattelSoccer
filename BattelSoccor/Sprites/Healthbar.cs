@@ -12,7 +12,7 @@ namespace BattelSoccor.Sprites
 {
     class Healthbar : Sprite
     {
-        private int healbartab = 0;
+       
         private List<Texture2D> texture2DListHeal;
         public Healthbar(Texture2D texture, List<Texture2D> ListHeal, String Heal)
 

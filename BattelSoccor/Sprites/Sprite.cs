@@ -10,10 +10,13 @@ namespace BattelSoccor.Sprites
 {
     class Sprite
     {
+        public int healbartab = 0;
+        public bool untiOn = false;
+        public bool powerOn = false;
         public bool dash = false;
         public bool oldKeyIsLeft = false;
         public bool hitball = false;
-        protected Texture2D _texture;
+        public Texture2D _texture;
         public string name = "bg";
         public Vector2 Position;
         public Vector2 Velocity;
