@@ -271,7 +271,7 @@ namespace BattelSoccor.Sprites
 
             }
 
-            if ((Position.X <= 0 || Position.X >= Game1.screenWidth && Position.Y < 400) && (Position.Y < 326 || Position.Y > 288))
+            if ((Position.X <= 0 || Position.X >= Game1.screenWidth && Position.Y < 400) && (Position.Y < 324 || Position.Y > 288))
             {
                 vx = -vx;
                 keeppos = Position.Y;
