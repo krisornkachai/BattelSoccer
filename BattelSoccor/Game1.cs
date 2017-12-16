@@ -692,10 +692,10 @@ namespace BattelSoccor
                   {
                        Position=new Vector2(0,0),
                   },
-                                         /*    new Sprite(Content.Load<Texture2D>("charactor1/charactor_Skillulti/layer1"),"scoreborad")//sprit13
+                                            new Sprite(Content.Load<Texture2D>("scoreborad"),"scoreborad")//sprit13
                   {
-                       Position=new Vector2(0,0),
-                  },*/
+                       Position=new Vector2(302,60),
+                  },
             };
 
           
@@ -860,8 +860,9 @@ namespace BattelSoccor
                  
                     break;
                 case GameState.GamePlay:
-
+                    
                     _sprites[0].Draw(spriteBatch);
+                    _sprites[13].Draw(spriteBatch);
                     _sprites[9].Draw(spriteBatch);
                     _sprites[3].Draw(spriteBatch);
                     _sprites[4].Draw(spriteBatch);
