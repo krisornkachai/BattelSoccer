@@ -59,6 +59,7 @@ namespace BattelSoccor
         Button btn_quie;
         Button btn_quie1;
         Button btn_quie2;
+        Button btn_Play;
         private List<Sprite> selectcha;
         private List<Texture2D> _slideshow1;
         private List<Texture2D> _slideshow2;
@@ -109,6 +110,8 @@ namespace BattelSoccor
             btnok = new Button(Content.Load<Texture2D>("btn_start"), graphics.GraphicsDevice);
             btnhow = new Button(Content.Load<Texture2D>("select_bt"), graphics.GraphicsDevice);
 
+            btn_Play = new Button(Content.Load<Texture2D>("btn_start"), graphics.GraphicsDevice);
+
             btn_2play.setPosition(new Vector2(25, 387 - 260));
             btnok.setPosition(new Vector2(290, 387 - 260));
             btn_quie.setPosition(new Vector2(25, 387 - 60));
@@ -116,6 +119,7 @@ namespace BattelSoccor
             btn_quie1.setPosition(new Vector2(290, 387));
             btn_quie2.setPosition(new Vector2(290, 387));
             btnPlay.setPosition(new Vector2(482, 387));
+            btn_Play.setPosition(new Vector2(482, 387));
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -649,11 +653,11 @@ namespace BattelSoccor
                   },
                   new Healthbar( healTexture,texture2DHeal2,"HB1")//sprite4
                   {
-                      Position=new Vector2((screenWidth/2)-250,(screenHeingt/2)-(batTexture.Height/2)-100),
+                      Position=new Vector2(60,50),
                   },
                   new Healthbar(Content.Load<Texture2D>("charactor1/bar1/bar0"),texture2DHeal1,"HB2")//sprite5
                   {
-                      Position=new Vector2((screenWidth/2)+100,(screenHeingt/2)-(batTexture.Height/2)-100),
+                      Position=new Vector2(475,50),
                   },
                /*    new Sprite(Content.Load<Texture2D>("goal"))
                   {
@@ -688,6 +692,10 @@ namespace BattelSoccor
                   {
                        Position=new Vector2(0,0),
                   },
+                                         /*    new Sprite(Content.Load<Texture2D>("charactor1/charactor_Skillulti/layer1"),"scoreborad")//sprit13
+                  {
+                       Position=new Vector2(0,0),
+                  },*/
             };
 
           
@@ -804,7 +812,11 @@ namespace BattelSoccor
                     }
                     btn_quie2.Update(mouse);
                     break;
+                case GameState.win:
 
+                    if (btn_Play.isClicked == true) CurrentState = GameState.Selectcha;
+                    btn_Play.Update(mouse);
+                    break;
 
             }
 

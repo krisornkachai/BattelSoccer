@@ -124,10 +124,10 @@ namespace BattelSoccor.Sprites
 
             if (dashnum > 0)
             {   if(this.name== "Charac_1")
-                Velocity.X = 8f;
+                Velocity.X = 12f;
 
                 if (this.name == "Charac_2")
-                    Velocity.X = -8f;
+                    Velocity.X = -12f;
 
                 dashnum--;
             }

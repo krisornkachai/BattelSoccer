@@ -96,8 +96,8 @@ namespace BattelSoccor.Sprites
                         if (sprites[1].dash)
                         {
                             sprites[4].hitball = true; // Healbar
-                            vx = 17;
-                            vy += 7;
+                            vx = 20;
+                            vy += 5;
 
                         }
                         else { 
@@ -113,8 +113,8 @@ namespace BattelSoccor.Sprites
                         MediaPlayer.Play(touchball);
                         if (sprites[1].dash) { 
                             sprites[4].hitball = true; // Healbar
-                        vx = -17;
-                        vy += 7;
+                        vx = -20;
+                        vy += 5;
                         this.vx = -this.vx;
                         }
                         else
@@ -157,8 +157,8 @@ namespace BattelSoccor.Sprites
                         if (sprites[2].dash)
                         {
                             sprites[5].hitball = true; // Healbar
-                            vx = 17;
-                            vy += 7;
+                            vx = 20;
+                            vy += 5;
 
                         }
                         else { 
@@ -174,8 +174,8 @@ namespace BattelSoccor.Sprites
                         if (sprites[2].dash)
                         {
                             sprites[5].hitball = true; // Healbar
-                            vx = -17;
-                            vy += 7;
+                            vx = -20;
+                            vy += 5;
                             this.vx = -this.vx;
                         }
                         else {
@@ -233,7 +233,7 @@ namespace BattelSoccor.Sprites
                     if (shooted) {
                         if (golanum < 41) {
                         sprites[12]._texture = golalist[golanum];
-                            sprites[12].Position.X = 200;
+                            sprites[12].Position.X = 120;
                             sprites[12].Position.Y = 100;
                         golanum++; }
                         else
@@ -290,7 +290,7 @@ namespace BattelSoccor.Sprites
                     sprites[1].Position.X = 120;
                     sprites[1].Position.Y = 324;
                     sprites[2].Position.X = 584;
-                    sprites[2].Position.Y = 326;
+                    sprites[2].Position.Y = 324;
                     score.Score2 += 1;
                     shooted = true;
                     MediaPlayer.Play(heyy);
@@ -302,7 +302,7 @@ namespace BattelSoccor.Sprites
                     sprites[1].Position.X = 120;
                     sprites[1].Position.Y = 324;
                     sprites[2].Position.X = 584;
-                    sprites[2].Position.Y = 326;
+                    sprites[2].Position.Y = 324;
                     score.Score1 += 1;
                     shooted=true;
                     Restart();
