@@ -19,6 +19,9 @@ namespace BattelSoccor
         {
             Mainmenu,
             GamePlay,
+            Selectcha,
+            Select2play,
+            upskill,
             win
         }
         GameState CurrentState = GameState.Mainmenu;
@@ -33,9 +36,15 @@ namespace BattelSoccor
 
         private Score _score;
         private List<Sprite> _sprites;
+        private List<Sprite> select;
         private List<Texture2D> texture2DCha1MoveRight;
         private List<Texture2D> texture2DCha1MoveLeft;
         private List<Texture2D> texture2DCha1MoveJump;
+        private List<Texture2D> texture2DCha3MoveLeft;
+        private List<Texture2D> texture2DCha3MoveRight;
+        private List<Texture2D> texture2DCha2MoveRight;
+        private List<Texture2D> texture2DCha2MoveLeft;
+        private List<Texture2D> texture2DCha2MoveJump;
         private List<Texture2D> power1;
         private List<Texture2D> unti1;
         private List<Texture2D> gola;
@@ -43,14 +52,21 @@ namespace BattelSoccor
         private List<Texture2D> unti2;
         private List<Texture2D> bg_list;
 
-        private List<Texture2D> texture2DCha2MoveRight;
-        private List<Texture2D> texture2DCha2MoveLeft;
-        private List<Texture2D> texture2DCha2MoveJump;
+        Button btnPlay;
+        Button btnhow;
+        Button btnok;
+        Button btn_2play;
+        Button btn_quie;
+        Button btn_quie1;
+        Button btn_quie2;
+        private List<Sprite> selectcha;
+        private List<Texture2D> _slideshow1;
+        private List<Texture2D> _slideshow2;
 
         private List<Texture2D> texture2DHeal1;
         private List<Texture2D> texture2DHeal2;
       
-        Button btnPlay;
+       //utton btnPlay;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -86,6 +102,19 @@ namespace BattelSoccor
             graphics.ApplyChanges();
             IsMouseVisible = true;
             btnPlay = new Button(Content.Load<Texture2D>("btn_start"), graphics.GraphicsDevice);
+            btn_2play = new Button(Content.Load<Texture2D>("select_bt_2play"), graphics.GraphicsDevice);
+            btn_quie = new Button(Content.Load<Texture2D>("select_bt_quit"), graphics.GraphicsDevice);
+            btn_quie1 = new Button(Content.Load<Texture2D>("select_bt_quit"), graphics.GraphicsDevice);
+            btn_quie2 = new Button(Content.Load<Texture2D>("select_bt_quit"), graphics.GraphicsDevice);
+            btnok = new Button(Content.Load<Texture2D>("btn_start"), graphics.GraphicsDevice);
+            btnhow = new Button(Content.Load<Texture2D>("select_bt"), graphics.GraphicsDevice);
+
+            btn_2play.setPosition(new Vector2(25, 387 - 260));
+            btnok.setPosition(new Vector2(290, 387 - 260));
+            btn_quie.setPosition(new Vector2(25, 387 - 60));
+            btnhow.setPosition(new Vector2(25, 387 - 160));
+            btn_quie1.setPosition(new Vector2(290, 387));
+            btn_quie2.setPosition(new Vector2(290, 387));
             btnPlay.setPosition(new Vector2(482, 387));
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -94,7 +123,7 @@ namespace BattelSoccor
             this.touchball = Content.Load<Song>("touchball");
             heyy = Content.Load<Song>("heyy");
 
-            texture2DCha1MoveRight = new List<Texture2D>() {
+            texture2DCha1MoveLeft = new List<Texture2D>() {
                 Content.Load<Texture2D>("charactor1/Charac_1/2_1") ,
                 Content.Load<Texture2D>("charactor1/Charac_1/2_2") ,
                 Content.Load<Texture2D>("charactor1/Charac_1/2_3"),
@@ -103,13 +132,23 @@ namespace BattelSoccor
                 Content.Load<Texture2D>("charactor1/Charac_1/2_6")
             };
 
-            texture2DCha1MoveLeft = new List<Texture2D>() {
-                Content.Load<Texture2D>("charactor1/Charac_1/2_1") ,
-                Content.Load<Texture2D>("charactor1/Charac_1/2_2") ,
-                Content.Load<Texture2D>("charactor1/Charac_1/2_3"),
-                Content.Load<Texture2D>("charactor1/Charac_1/2_4") ,
-                Content.Load<Texture2D>("charactor1/Charac_1/2_5") ,
-                Content.Load<Texture2D>("charactor1/Charac_1/2_6")
+            texture2DCha1MoveRight = new List<Texture2D>() {
+                Content.Load<Texture2D>("charactor1/Charac_1/2_1_1") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_2_1") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_3_1"),
+                Content.Load<Texture2D>("charactor1/Charac_1/2_4_1") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_5_1") ,
+                Content.Load<Texture2D>("charactor1/Charac_1/2_6_1")
+            };
+
+            texture2DCha3MoveRight = new List<Texture2D>() {
+
+                Content.Load<Texture2D>("charector3/cha3_1") ,
+                Content.Load<Texture2D>("charector3/cha3_2") ,
+                Content.Load<Texture2D>("charector3/cha3_3"),
+                Content.Load<Texture2D>("charector3/cha3_4") ,
+                Content.Load<Texture2D>("charector3/cha3_5") ,
+                Content.Load<Texture2D>("charector3/cha3_6")
             };
 
             texture2DCha1MoveJump = new List<Texture2D>() {
@@ -122,12 +161,12 @@ namespace BattelSoccor
             };
 
             texture2DCha2MoveRight = new List<Texture2D>() {
-                Content.Load<Texture2D>("charactor2/Charac_2/2_1") ,
-                Content.Load<Texture2D>("charactor2/Charac_2/2_2") ,
-                Content.Load<Texture2D>("charactor2/Charac_2/2_3"),
-                Content.Load<Texture2D>("charactor2/Charac_2/2_4") ,
-                Content.Load<Texture2D>("charactor2/Charac_2/2_5") ,
-                Content.Load<Texture2D>("charactor2/Charac_2/2_6")
+                Content.Load<Texture2D>("charactor2/Charac_2/1_1") ,
+                Content.Load<Texture2D>("charactor2/Charac_2/1_2") ,
+                Content.Load<Texture2D>("charactor2/Charac_2/1_3"),
+                Content.Load<Texture2D>("charactor2/Charac_2/1_4") ,
+                Content.Load<Texture2D>("charactor2/Charac_2/1_5") ,
+                Content.Load<Texture2D>("charactor2/Charac_2/1_6")
             };
 
             texture2DCha2MoveLeft = new List<Texture2D>() {
@@ -137,6 +176,14 @@ namespace BattelSoccor
                 Content.Load<Texture2D>("charactor2/Charac_2/2_4") ,
                 Content.Load<Texture2D>("charactor2/Charac_2/2_5") ,
                 Content.Load<Texture2D>("charactor2/Charac_2/2_6")
+            };
+            texture2DCha3MoveLeft = new List<Texture2D>() {
+                Content.Load<Texture2D>("charector3/cha3_1_2") ,
+                Content.Load<Texture2D>("charector3/cha3_2_2") ,
+                Content.Load<Texture2D>("charector3/cha3_3_2"),
+                Content.Load<Texture2D>("charector3/cha3_4_2") ,
+                Content.Load<Texture2D>("charector3/cha3_5_2") ,
+                Content.Load<Texture2D>("charector3/cha3_6_2")
             };
 
 
@@ -179,6 +226,8 @@ namespace BattelSoccor
                Content.Load<Texture2D>("charactor2/bar2/bar10"),
                Content.Load<Texture2D>("charactor2/bar2/bar11"),
             };
+
+           
 
             power1 = new List<Texture2D>()
             {
@@ -449,11 +498,127 @@ namespace BattelSoccor
             var healTexture = Content.Load<Texture2D>("charactor2/bar2/bar0");  //newwwwwww
             // charactersteam = new Charactersteam(batTexture, 4, 6);
             _score = new Score(Content.Load<SpriteFont>("Font"));
+            _slideshow1 = new List<Texture2D>()
+            {
 
+                Content.Load<Texture2D>("2_1-iloveimg-resized"),
+                 Content.Load<Texture2D>("1_6-iloveimg-resized"),
+                Content.Load<Texture2D>("cha3_1_2")
+
+            };
+            _slideshow2 = new List<Texture2D>()
+            {
+                Content.Load<Texture2D>("select2_1"),
+                Content.Load<Texture2D>("select2_2"),
+                Content.Load<Texture2D>("cha3_1")
+
+            };
+            var batspriteselect1 = _slideshow1[0];
+            var batspriteselect2 = _slideshow2[0];
+            selectcha = new List<Sprite>()
+            {
+                new Selectchar ( batspriteselect1, _slideshow1,"slide_list1")
+                {
+                    Position = new Vector2(0,150),
+                    Input = new Input()
+                    {
+                        left=Keys.A,
+                        right=Keys.D,
+                    }
+                },
+                 new Selectchar( batspriteselect2, _slideshow2,"slide_list2")
+                {
+                    Position = new Vector2(425,150),
+                    Input = new Input()
+                    {
+                        left=Keys.Left,
+                        right=Keys.Right,
+                    }
+                }
+                
+                //Content.Load<Texture2D>("select"),
+            };
+            var batTexture1 = Content.Load<Texture2D>("charactor1/Charac_1/2_1");
+            var batTexture2 = Content.Load<Texture2D>("charactor2/Charac_2/1_6");
+            var batTexture3 = Content.Load<Texture2D>("charector3/cha3_1_2");
+            var batTexture1_2 = Content.Load<Texture2D>("charactor1/Charac_1/2_1_1");
+            var batTexture2_2 = Content.Load<Texture2D>("charactor2/Charac_2/2_1");
+            var batTexture3_2 = Content.Load<Texture2D>("charector3/cha3_1");
+
+            select = new List<Sprite>()
+            {new Charecctor(batTexture1, texture2DCha1MoveLeft,power1,unti2, "Charac1__")//1left
+                  {
+                    Position = new Vector2(120, 326),
+                    Input = new Input()
+                    {
+                        left = Keys.A,
+                        right = Keys.D,
+                        jump = Keys.W,
+                         dash=Keys.S,
+                        power= Keys.E,
+                    }
+                },new Charecctor(batTexture2_2, texture2DCha2MoveRight,power1,unti2, "Charac2__")//2left
+                  {
+                    Position = new Vector2(120, 326),
+                    Input = new Input()
+                    {
+                        left = Keys.A,
+                        right = Keys.D,
+                        jump = Keys.W,
+                         dash=Keys.S,
+                        power= Keys.E,
+                    }
+                },new Charecctor(batTexture3,texture2DCha3MoveLeft,power1,unti2, "Charac3__")//3left
+                  {
+                    Position = new Vector2(120, 326),
+                    Input = new Input()
+                    {
+                        left = Keys.A,
+                        right = Keys.D,
+                        jump = Keys.W,
+                         dash=Keys.S,
+                        power= Keys.E,
+                    }
+                },new Charecctor( batTexture1_2,texture2DCha1MoveRight,power2,unti1,"Charac__1")//1right
+                {
+                    Position=new Vector2(584,326),
+                    Input = new Input()
+                    {
+                        left=Keys.Left,
+                        right=Keys.Right,
+                        jump=Keys.Up,
+                         dash=Keys.Down,
+                        power=Keys.P,
+                    }
+                },new Charecctor( batTexture2,texture2DCha2MoveLeft,power2,unti1,"Charac__2")//2right
+                {
+                    Position=new Vector2(584,326),
+                    Input = new Input()
+                    {
+                        left=Keys.Left,
+                        right=Keys.Right,
+                        jump=Keys.Up,
+                         dash=Keys.Down,
+                        power=Keys.P,
+                    }
+                },new Charecctor( batTexture3_2,texture2DCha3MoveRight,power2,unti1,"Charac__3")//3right
+                {
+                    Position=new Vector2(584,326),
+                    Input = new Input()
+                    {
+                        left=Keys.Left,
+                        right=Keys.Right,
+                        jump=Keys.Up,
+                        dash=Keys.Down,
+                        power=Keys.P,
+                    }
+                }
+
+            };
             _sprites = new List<Sprite>()
             {
                 new Sprite(Content.Load<Texture2D>("bg"),"bg"),//sprite 0
-                new Charecctor(batTexture,texture2DCha1MoveRight,power1,unti2,"Charac_1")//sprite 1
+                new Charecctor(batTexture1,texture2DCha1MoveRight,power1,unti2,"Charac_1")//sprite 1
                 {
                     Position=new Vector2(120,326),
                     Input = new Input()
@@ -465,7 +630,7 @@ namespace BattelSoccor
                         power= Keys.E,
                     }
                 },
-                  new Charecctor( Content.Load<Texture2D>("charactor2/Charac_2/2_1"),texture2DCha2MoveRight,power2,unti1,"Charac_2")//sprite2
+                  new Charecctor( batTexture1_2, texture2DCha1MoveRight,power2,unti1,"Charac_2")//sprite2
                 {
                     Position=new Vector2(584,326),
                     Input = new Input()
@@ -546,23 +711,103 @@ namespace BattelSoccor
         {
             i++;
             _sprites[0]._texture = bg_list[i%96];
+            foreach (var select in selectcha)
+            {
+                select.Update(gameTime, selectcha);
+            }
             MouseState mouse = Mouse.GetState();
             switch (CurrentState)
             {
 
                 case GameState.Mainmenu:
 
-                    if (btnPlay.isClicked == true) CurrentState = GameState.GamePlay;
+                    if (btnPlay.isClicked == true) CurrentState = GameState.Selectcha;
                     btnPlay.Update(mouse);
                     break;
                 case GameState.GamePlay:
                     if (_score.Score1 == 5) { CurrentState = GameState.win; }
                     if (_score.Score2 == 5) { CurrentState = GameState.win; }
                     break;
-           //     case GameState.win:
+                //     case GameState.win:
+                case GameState.Selectcha:
+
+                    if (btn_2play.isClicked == true)
+                    {
+                        //show++;
+                        CurrentState = GameState.Select2play;
+                        btn_2play.isClicked = false;
+                    }
+                    if (btn_quie.isClicked == true)
+                    {
+                        btn_quie.isClicked = false;
+                        //show++;
+                        CurrentState = GameState.Mainmenu;
+                    }
+                    if (btnhow.isClicked == true)
+                    {
+                        btnhow.isClicked = false;
+                        CurrentState = GameState.upskill;
+                    }
+                    btn_2play.Update(mouse);
+                    btn_quie.Update(mouse);
+                    btnhow.Update(mouse);
+                    break;
+                case GameState.Select2play:
+                    switch (selectcha[0].Charecctorselecte)
+                    {
+                        case 0:
+                            _sprites[1] = select[0];
+                            _sprites[1].name = "Charac_1";
+                            break;
+                        case 1:
+                            _sprites[1] = select[1];
+                            _sprites[1].name = "Charac_1";
+                            break;
+                        case 2:
+                            _sprites[1] = select[2];
+                            _sprites[1].name = "Charac_1";
+                            break;
+                    }
+                    switch (selectcha[1].Charecctorselecte)
+                    {
+                        case 0:
+                            _sprites[2] = select[3];
+                            _sprites[2].name = "Charac_2";
+                            break;
+                        case 1:
+                            _sprites[2] = select[4];
+                            _sprites[2].name = "Charac_2";
+                            break;
+                        case 2:
+                            _sprites[2] = select[5];
+                            _sprites[2].name = "Charac_2";
+                            break;
+                    }
+
+                    if (btnok.isClicked == true)
+                    {
+                        CurrentState = GameState.GamePlay;
+                    }
+                    if (btn_quie1.isClicked == true)
+                    {
+                        CurrentState = GameState.Selectcha;
+                    }
+                    btnok.Update(mouse);
+                    btn_quie1.Update(mouse);
+                    break;
+
+                case GameState.upskill:
+                    if (btn_quie2.isClicked == true)
+                    {
+                        //show++;
+                        CurrentState = GameState.Select2play;
+                    }
+                    btn_quie2.Update(mouse);
+                    break;
 
 
             }
+
 
 
 
@@ -570,6 +815,10 @@ namespace BattelSoccor
             {
 
                 sprite.Update(gameTime, _sprites);
+            }
+            foreach (var sprite in selectcha)
+            {
+                sprite.Update(gameTime, selectcha);
             }
 
 
@@ -626,6 +875,27 @@ namespace BattelSoccor
                     if (_score.Score2 == 5) { spriteBatch.Draw(Content.Load<Texture2D>("charactor2/Charac_2/2_1"), new Rectangle(300, 250, 150, 150), Color.White); }
                     if (_score.Score1 == 5) { spriteBatch.Draw(Content.Load<Texture2D>("charactor1/Charac_1/2_1"), new Rectangle(300, 250, 150, 150), Color.White); }
                     btnPlay.Draw(spriteBatch);
+                    break;
+                case GameState.Selectcha:
+                    spriteBatch.Draw(Content.Load<Texture2D>("select"), new Rectangle(0, 0, screenWidth, screenHeingt), Color.White);
+                    spriteBatch.Draw(_slideshow1[1], new Rectangle(280, 100, screenWidth - 300, screenHeingt - 100), Color.White);
+
+                    btn_2play.Draw(spriteBatch);
+                    btn_quie.Draw(spriteBatch);
+                    btnhow.Draw(spriteBatch);
+                    break;
+                case GameState.Select2play:
+                    spriteBatch.Draw(Content.Load<Texture2D>("bg4_not_bottom"), new Rectangle(0, 0, screenWidth, screenHeingt), Color.White);
+                    foreach (var sprites in selectcha)
+                        sprites.Draw(spriteBatch);
+                    btnok.Draw(spriteBatch);
+                    btn_quie1.Draw(spriteBatch);
+
+                    break;
+                case GameState.upskill:
+                    spriteBatch.Draw(Content.Load<Texture2D>("bg7"), new Rectangle(0, 0, screenWidth, screenHeingt), Color.White);
+
+                    btn_quie2.Draw(spriteBatch);
                     break;
 
             }

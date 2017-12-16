@@ -28,7 +28,10 @@ namespace BattelSoccor.Sprites
         {
             if (hitball && healbartab < 12)
             {
-
+                if (healbartab < 0)
+                {
+                    healbartab = 0;
+                }
                 _texture = texture2DListHeal[healbartab];
                 healbartab += 1;
                 if (healbartab > 11)
@@ -36,6 +39,7 @@ namespace BattelSoccor.Sprites
                     hitball = false;
                 }
                 hitball = false;
+               
 
             }
 

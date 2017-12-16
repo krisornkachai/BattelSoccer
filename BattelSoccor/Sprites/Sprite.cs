@@ -23,6 +23,7 @@ namespace BattelSoccor.Sprites
         public float Speed;
         public Input Input;
         public Color[]textureData;
+        public int Charecctorselecte = 0;
         //public bool HB = false;
         public Rectangle Rectangle
         {

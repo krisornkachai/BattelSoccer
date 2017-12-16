@@ -51,6 +51,7 @@
     <Compile Include="Sprites\Charector.cs" />
     <Compile Include="Sprites\CharectorStream.cs" />
     <Compile Include="Sprites\Healthbar.cs" />
+    <Compile Include="Sprites\Selector.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="win.cs" />
   </ItemGroup>
